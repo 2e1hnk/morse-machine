@@ -526,7 +526,16 @@
           sleepFor(duration);
           oscillator.stop();
         }
-
+        
+        // Websocket stuff
+		var conn = new WebSocket('ws://localhost:8080');
+		conn.onopen = function(e) {
+		    console.log("Websocket connection established!");
+		};
+		
+		conn.onmessage = function(e) {
+		    console.log(e.data);
+		};
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
