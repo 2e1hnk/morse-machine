@@ -1,0 +1,41 @@
+        div.output {
+        }
+        div.output p.message {
+            font-family: "courier new";
+            font-size: 20px ;
+            line-height: 30px ;
+        }
+        div.output span.possibleCharacters {
+            background-color: gold ;
+            display: inline-block ;
+            padding: 0px 7px 0px 7px ;
+        }
+        div.alphabet {
+            bottom: 0px ;
+            position: fixed ;
+        }
+        div.alphabet h3 {
+            margin: 0px 0px 20px 0px ;
+        }
+        div.alphabet ul.characters {
+            margin: 0px 0px 0px 0px ;
+            padding: 0px 0px 0px 0px ;
+        }
+        div.alphabet ul.characters li {
+            border: 1px solid #CCCCCC ;
+            display: inline-block ;
+            padding: 10px 0px 10px 0px ;
+            text-align: center ;
+            width: 75px ;
+        }
+        div.alphabet ul.characters li span.character {
+            display: block ;
+            font-size: 14px ;
+            line-height: 18px ;
+            margin: 0px 0px 7px 0px ;
+        }
+        div.alphabet ul.characters li span.sequence {
+            display: block ;
+            font-size: 24px ;
+            line-height: 18px ;
+        }
