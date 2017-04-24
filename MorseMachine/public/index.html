@@ -60,7 +60,7 @@
             this._freq = 440;
             // Define the desired code speed in words per minute
             // Note that code via a keeyboard is harder than with a key so this will probably be lower that normal key speed
-            this._speed = 5;
+            this._speed = 12;
             // Define the duration of the dot in milliseconds. Duration is calculated as 1200/speed (wpm)
             this._dotDuration = (1200 / this._speed);
             // Define the duration of the dash in milliseconds. The
@@ -257,8 +257,8 @@
     <div class="row">
       <div class="col s12">
         <div class="controls">
-	  <input id="speed" type="range" min="5" max="30" step="1" onChange="updatePrefs()" value="12" />
-          <span id="speedValue"></span>
+	      <!--<input id="speed" type="range" min="5" max="30" step="1" onChange="updatePrefs()" value="12" />
+          <span id="speedValue"></span>-->
           <input id="frequency" type="range" min="100" max="2000" step="1" onChange="updatePrefs()" value="440" />
           <span id="frequencyValue"></span>
         </div>
@@ -286,7 +286,7 @@
 
           </p>
         </div>
-      <div>
+      </div>
     </div>
     <!-- END: Output. -->
 
@@ -299,16 +299,16 @@
             Morse Code Alphabet
           </h3>
 
-          <ul class="characters">
+          <div class="row characters">
             <!-- This will be populated dynamically. -->
-          </ul>
+          </div>
 
           <!-- Define the template. --->
           <script type="application/x-template" class="template">
-              <li>
+              <div class="col s1">
                   <span class="character"></span>
                   <span class="sequence"></span>
-              </li>
+              </div>
           </script>
         </div>
       </div>
@@ -322,7 +322,7 @@
         (function( $, container, morseCode ){
             // Get the dom elements in this module.
             var dom = {
-                characters: container.find( "ul.characters" ),
+                characters: container.find( "div.characters" ),
                 template: container.find( "script.template" )
             };
             // Get the the alphabet from the morse code model.
@@ -436,6 +436,7 @@
                                 dom.characters.text(
                                     dom.characters.text() + character
                                 );
+                                conn.send(character);
                             } catch (e) {
                                 // Reset the sequence - something
                                 // went wrong with the user's input.
@@ -463,8 +464,8 @@
 
         function updatePrefs() {
 
-            morseCode._speed = document.getElementById("speed").value;
-            document.getElementById("speedValue").innerHTML = morseCode._speed + " WPM";
+            //morseCode._speed = document.getElementById("speed").value;
+            //document.getElementById("speedValue").innerHTML = morseCode._speed + " WPM";
 
             morseCode._freq = document.getElementById("frequency").value;
             document.getElementById("frequencyValue").innerHTML = morseCode._freq + " Hz";
@@ -482,7 +483,6 @@
         function playChar(str) {
             for ( var key in morseCode._patternMap ) {
                 if ( morseCode._patternMap[key] == str ) {
-                   console.log(key);
                    for (var i = 0, len = key.length; i < len; i++) {
                      if ( key[i] == "•" )
                      {
@@ -535,6 +535,7 @@
 		
 		conn.onmessage = function(e) {
 		    console.log(e.data);
+		    playString(e.data);
 		};
     </script>
 
