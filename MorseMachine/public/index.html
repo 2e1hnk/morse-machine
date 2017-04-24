@@ -1,0 +1,25 @@
+Code._dotDuration, morseCode._freq);
+        }
+
+        function playDash() {
+          playTone(morseCode._dashDuration, morseCode._freq);
+        }
+
+        var audioContext = new AudioContext();
+
+        function playTone(duration, frequency) {
+          var oscillator = audioContext.createOscillator();
+          oscillator.type = "sine";
+          oscillator.frequency.value = frequency;
+          oscillator.connect(audioContext.destination);
+          oscillator.start();
+          sleepFor(duration);
+          oscillator.stop();
+        }
+
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+</body>
+</html>
